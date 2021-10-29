@@ -10,7 +10,7 @@ router.get('/', authGuard, async (req, res) => {
     try {
         let connection = await mongoclient.connect(URL)
         let db = connection.db("blog-cms")
-        let categories = await db.collection("category").find({userid : req.userid}).toArray()
+        let categories = await db.collection("category").find().toArray()
         await connection.close()
         res.json(categories);
     } catch (error) {
